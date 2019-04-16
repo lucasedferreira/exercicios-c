@@ -1,9 +1,9 @@
 void exercicio2() {
-    printf("Exercício 2\n\n");
+    printf("ExercÃ­cio 2\n\n");
 
     int num = 0;
 
-    printf("Informe o número: ");
+    printf("Informe o nÃºmero: ");
     scanf("%d", &num);
 
     for(int i = 0; i <= num; i++){

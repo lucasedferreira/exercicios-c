@@ -1,12 +1,12 @@
 void exercicio3() {
-    printf("Exercício 3\n\n");
+    printf("ExercÃ­cio 3\n\n");
 
     int num = 0;
 
-    printf("Informe o número: ");
+    printf("Informe o nÃºmero: ");
     scanf("%d", &num);
 
-	printf("\nA tabuada de %d de 0 a 9 é:\n", num);
+	printf("\nA tabuada de %d de 0 a 9 Ã©:\n", num);
     for(int i = 0; i <= 9; i++){
     	printf("\n%d", i * num);
 	}
