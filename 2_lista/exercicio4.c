@@ -1,20 +1,20 @@
 void exercicio4() {
-    printf("Exercício 4\n\n");
+    printf("ExercÃ­cio 4\n\n");
 
     int num1 = 0, num2 = 0, count = 0;
     bool primo;
 
-    printf("Informe o primeiro número: ");
+    printf("Informe o primeiro nÃºmero: ");
     scanf("%d", &num1);
     
-    printf("Informe o segundo número: ");
+    printf("Informe o segundo nÃºmero: ");
     scanf("%d", &num2);
     
     if(num1 < 0 || num2 < 0){
-    	printf("Por favor informe números positivos!");
+    	printf("Por favor informe nÃºmeros positivos!");
 	}
 
-	printf("\nOs números primos entre %d e %d são:\n", num1, num2);
+	printf("\nOs nÃºmeros primos entre %d e %d sÃ£o:\n", num1, num2);
     for(int i = num1; i <= num2; i++){
     	
     	primo = true;
@@ -28,6 +28,6 @@ void exercicio4() {
 			printf("\n%d", i);
 			count++;
 		}
-		printf("\nEntre %d e %d possuem %d números primos.", num1, num2, count);
+		printf("\nEntre %d e %d possuem %d nÃºmeros primos.", num1, num2, count);
 	}
 }
