@@ -1,4 +1,7 @@
 exe
 *.exe
 */exe
-*/.exe
+*/*.exe
+
+*.dat
+*/*.dat

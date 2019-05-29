@@ -18,22 +18,6 @@
 #include "exercicio10.c"
 #include "exercicio11.c"
 
-void lerString(char msg[], char* salvar, int tamanho) {
-    printf("%s", msg);
-
-    fgets(salvar, tamanho, stdin);
-
-    //Remove o caractere \n da string
-    strtok(salvar, "\n");
-}
-
-int lerInt(char msg[]) {
-    char dado[10000];
-    lerString(msg, dado, 10000);
-    int valor = atoi(dado);
-    return valor;
-}
-
 void mostraMenu() {
     printf("Informe o exercício:\n");
     printf("1 - Exercício 1\n");

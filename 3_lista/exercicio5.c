@@ -1,21 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include <string.h>
+#include "strings.h"
 
 typedef struct
 {
-    float n1[100];
-    float n2[100];
-    float n3[100];
+	float nota1, nota2, nota3, nota4;
 } notas;
 
 typedef struct 
 { 
-    int matricula;
-    char nome[100]; 
-    notas notas;
+  int matricula;
+  char nome[100];
+  notas notas;	
 } aluno;
+
+typedef struct
+{
+  aluno alunos[10];
+  int indiceAluno;
+} save_data;
 
 void lerString(char msg[], char* salvar, int tamanho) {
   printf("%s", msg);
@@ -23,100 +27,109 @@ void lerString(char msg[], char* salvar, int tamanho) {
   fgets(salvar, tamanho, stdin);
 
   //Remove o caractere \n da string
-    strtok(salvar, "\n");
+  strtok(salvar, "\n");
 }
 
 int lerInt(char msg[]) {
-    char dado[10000];
-    lerString(msg, dado, 10000);
-    int valor = atoi(dado);
-    return valor;
+  char dado[10000];
+  lerString(msg, dado, 10000);
+  int valor = atoi(dado);
+  return valor;
 }
 
-int lerDouble(char msg[]) {
-    char dado[10000];
-    lerString(msg, dado, 10000);
-    int valor = atof(dado);
-    return valor;
+float lerFloat(char msg[]) {
+  char dado[10000];
+  lerString(msg, dado, 10000);
+  float valor = atof(dado);
+  return valor;
 }
 
 notas perguntaNotas() {
-    notas n;
-    
-    printf("===== NOTAS ===== \n");
-    lerDouble("Informe a nota 1: ", n.n1);
-    lerDouble("Informe o nota 2:", n.n2);
-    lerDouble("Informe a nota 3: ", n.n3);
+  notas n1;
+  
+  printf("===== NOTAS ===== \n");
+  n1.nota1 = lerFloat("Informe a primeira nota: ");
+  n1.nota2 = lerFloat("Informe a segunda nota: ");
+  n1.nota3 = lerFloat("Informe a terceira nota: ");
+  n1.nota4 = lerFloat("Informe a quarta nota: ");
 
-    return n;
+  return n1;
 };
 
 aluno perguntaDadosAluno() {
-    aluno a1;
+  aluno c1;
 
-    a1.matricula = lerInt("Informe o matricula: ");
-    lerString("Informe o nome: ", a1.nome, 100);
-    a1.notas = perguntaNotas();
+  c1.matricula = lerInt("Informe a Matrícula: ");
+  lerString("Informe o nome: ", c1.nome, 100);
+  c1.notas = perguntaNotas();
 
-    return a1;
+  return c1;
 }
 
-void mostraDadosAluno(aluno a1) {
-    printf("Matricula: %d\n", a1.matricula);
-    printf("Nome: %s\n", a1.nome);
+void mostraDadosAluno(aluno a1, int mostrarMedia) {
+  printf("Matrícula: %d\n", a1.matricula);
+  printf("Nome: %s\n", a1.nome);
+  if(mostrarMedia) {
+    printf("Média: %.1f\n", ((a1.notas.nota1 + a1.notas.nota2 + a1.notas.nota3 + a1.notas.nota4) / 4));
+  }else {
     printf("Notas\n");
-    printf("Nota 1: %f\n", a1.notas.n1);
-    printf("Nota 2: %f\n", a1.notas.n2);
-    printf("Nota 3: %f\n", a1.notas.n3);
+    printf("Nota 1: %.1f\n", a1.notas.nota1);
+    printf("Nota 2: %.1f\n", a1.notas.nota2);
+    printf("Nota 3: %.1f\n", a1.notas.nota3);
+    printf("Nota 4: %.1f\n", a1.notas.nota4);
+  }
 }
 
-void mostraAlunos(aluno alunos[], int tamanho) {
-    printf("======== ALUNOS =========\n\n");
-    int i = 0;
+void mostraAlunos(aluno alunos[], int tamanho, int mostrarMedia) {
+  printf("======== ALUNOS =========\n\n");
+  int i = 0;
 
-    for(i = 0; i < tamanho; i++) {
-        aluno c1 = alunos[i];
-        mostraDadosAluno(c1);
-        printf("----------------------\n");
-    }
+  for(i = 0; i < tamanho; i++) {
+    aluno c1 = alunos[i];
+    mostraDadosAluno(c1, mostrarMedia);
+    printf("----------------------\n");
+  }
 
-    getchar();
+  getchar();
 }
 
 int main() {
+  setlocale(LC_ALL, "Portuguese");
 
-    int quantidade = 100;
-    aluno alunos[quantidade];
+  int quantidade = 10;
+  aluno alunos[quantidade];
 
-    int opcao = -1;
+  int opcao = -1;
 
-    int indiceAluno = 0;
+  int indiceAluno = 0;
 
-    do{
-        system("@cls||clear");
-        printf("1 - Cadastro de um aluno\n");
-        printf("2 - Listagem de alunos e suas 4 notas\n", indiceAluno);
-        printf("3 - Listagem dos alunos e suas médias\n", indiceAluno);
-        printf("0 - Sair\n");
+  do{
+    printf("1 - Cadastro de um aluno\n");
+    printf("2 - Listagem de alunos e suas 4 notas (%d cadastrados)\n", indiceAluno);
+    printf("3 - Listagem de alunos e suas médias\n");
+    printf("0 - Sair\n");
 
-        opcao = lerInt("Informe a opção: ");
+    opcao = lerInt("Informe a opção: ");
 
-        system("@cls||clear");
+    system("@cls||clear");
 
-        switch (opcao)
-        {
-            case 0: break;
-            case 1:
-                alunos[indiceAluno] = perguntaDadosAluno();
-                indiceAluno++;
-            break;
-        
-            case 2: mostraAlunos(alunos, indiceAluno);
-            break;
+    switch (opcao)
+    {
+      case 0: break;
+      case 1:
+        alunos[indiceAluno] = perguntaDadosAluno();
+        indiceAluno++;
+        break;
+    
+      case 2: mostraAlunos(alunos, indiceAluno, 0);
+        break;
 
-            default:
-                printf("Opção inválida\n");
-            break;
-        }
-    }while(opcao != 0);
+      case 3: mostraAlunos(alunos, indiceAluno, 1);
+        break;
+      
+      default:
+        printf("Opção inválida\n");
+        break;
+    }
+  }while(opcao != 0);
 }
