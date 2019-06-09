@@ -5,15 +5,16 @@
 #include <string.h>
 #include <locale.h>
 #include "strings.h"
+#include "utils.c"
 
 #include "exercicio1.c"
 #include "exercicio2.c"
-#include "exercicio3.c"
-#include "exercicio4.c"
-#include "exercicio5.c"
-#include "exercicio6.c"
-#include "exercicio7.c"
-#include "exercicio8.c"
+// #include "exercicio3.c"
+// #include "exercicio4.c"
+// #include "exercicio5.c"
+// #include "exercicio6.c"
+// #include "exercicio7.c"
+// #include "exercicio8.c"
 
 void mostraMenu() {
     printf("Informe o exercício:\n");
@@ -51,26 +52,26 @@ int main() {
             exercicio2();
             break;
             
-        case 3:
-            exercicio3();
-            break;
+        // case 3:
+        //     exercicio3();
+        //     break;
 
-        case 4:
-            exercicio4();
-            break;
+        // case 4:
+        //     exercicio4();
+        //     break;
 
-        case 5:
-        case 8:
-            printf("Este exercício deve ser executado sozinho :)\n");
-            break;
+        // case 5:
+        // case 8:
+        //     printf("Este exercício deve ser executado sozinho :)\n");
+        //     break;
         
-        case 6:
-            exercicio6();
-            break;
+        // case 6:
+        //     exercicio6();
+        //     break;
 
-        case 7:
-            exercicio7();
-            break;
+        // case 7:
+        //     exercicio7();
+        //     break;
 
         default:
             printf("Opção inválida");

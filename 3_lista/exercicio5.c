@@ -15,12 +15,6 @@ typedef struct
   notas notas;	
 } aluno;
 
-typedef struct
-{
-  aluno alunos[10];
-  int indiceAluno;
-} save_data;
-
 void lerString(char msg[], char* salvar, int tamanho) {
   printf("%s", msg);
 
